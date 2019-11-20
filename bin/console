@@ -11,3 +11,4 @@ require "your_favorite_artist"
 
 require "irb"
 IRB.start(__FILE__)
+
