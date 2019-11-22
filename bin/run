@@ -1,2 +1,5 @@
- #!/usr/bin/env ruby
-puts "this is working" 
+#!/usr/bin/env ruby
+
+require "your_favorite_artist.rb"
+ 
+CLI.new.call

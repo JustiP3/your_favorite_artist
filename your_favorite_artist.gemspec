@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Justin Phillips'"]
   spec.email         = ["'justinphil02@yahoo.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{CLI app that uses Last fm to return stats and options for your favoirte artist}
+  spec.description   = %q{Enter your favorite artist in a CLI, see options}
+  spec.homepage      = "https://github.com/JustiP3/your_favorite_artist"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/JustiP3/your_favorite_artist"
-    spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+    spec.metadata["changelog_uri"] = "https://github.com/JustiP3/your_favorite_artist/commits/master"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."

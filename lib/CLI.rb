@@ -1,6 +1,6 @@
 class CLI 
   
-  def self.call 
+  def call 
     puts "this is working"
   end 
   

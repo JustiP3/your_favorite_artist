@@ -1,8 +1,4 @@
-require "your_favorite_artist/version"
+require 'pry'
 
-module YourFavoriteArtist
-  class Error < StandardError; end
-  # Your code goes here...
-end
-
-
+require 'your_favorite_artist/version'
+require 'CLI'
