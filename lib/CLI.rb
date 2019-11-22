@@ -1,7 +1,7 @@
 class CLI 
   
   def call 
-    puts "this is working"
+    API.new.artist 
   end 
   
 end 
