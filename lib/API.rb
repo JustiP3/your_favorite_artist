@@ -5,7 +5,7 @@ attr_reader :test, :artist_info
 
   def artist 
   
-  @artist_info = Nokogiri::HTML(open('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Cher&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json'))
+ # @artist_info = Nokogiri::HTML(open('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Cher&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json'))
   binding.pry 
   end 
   
