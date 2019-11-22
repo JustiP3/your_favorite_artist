@@ -7,6 +7,7 @@ class CLI
     while input != 'exit'
     puts "Who is your favorite artist?"
     puts "Enter your favorite artist or exit"
+    
     input = gets.chomp 
     
     puts input
