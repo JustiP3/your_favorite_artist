@@ -10,9 +10,9 @@ attr_accessor :input
     
     puts "Welcome to Your Favorite Artist!"
     
-    while input != 'exit'
+    while self.input != 'exit'
     
-    input = get_user_input_artist
+    get_user_input_artist
     unless input == 'exit'
       fav_artist = Artist.new(input)
       fav_artist.get_info
@@ -28,12 +28,12 @@ attr_accessor :input
   
   
   def get_user_input_artist
-    until input && input.length > 0 
+    until self.input.length > 0 
       puts "Who is your favorite artist?"
       puts "Enter your favorite artist or exit"
-      input = gets.chomp 
-      if input == Integer
-        input = ""
+      self.input = gets.chomp 
+      if self.input == Integer
+        self.input = ""
         puts "Please enter a name in quotes, not a number"
       end 
     end #end of until loop 
@@ -43,7 +43,7 @@ attr_accessor :input
   def exit_prompt
     puts "Would you like to continue?"
     puts "Enter y/n"
-    input = gets.chomp 
+    self.input = gets.chomp 
     if input == 'exit' || input[0] == 'n' || input[0] == "N"
       return 'exit'
     end 
