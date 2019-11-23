@@ -9,8 +9,10 @@ class CLI
     puts "Enter your favorite artist or exit"
     
     input = gets.chomp 
-    
-    puts input
+    fav_artist = artist.new(input)
+    info = fav_artist.get_info
+    binding.pry
+   
    end #end of program loop
    
   end #end of call method 
