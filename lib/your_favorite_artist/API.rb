@@ -10,6 +10,7 @@ class API
     :name = hash["artist"]["name"],
     :bio = hash["artist"]["bio"]
   }
+  artist_info
   end 
   
   
