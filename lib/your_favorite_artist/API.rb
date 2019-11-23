@@ -8,7 +8,7 @@ class API
   hash = HTTParty.get(link).parsed_response 
   artist_info = {
     :name => hash["artist"]["name"],
-    :bio => hash["artist"]["bio"]
+    :bio => hash["artist"]["bio"]["summary"]
   }
   artist_info
   end 

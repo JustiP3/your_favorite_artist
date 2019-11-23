@@ -23,9 +23,16 @@ class CLI
   
   
   def get_user_input_artist
-    puts "Who is your favorite artist?"
-    puts "Enter your favorite artist or exit"
-    gets.chomp 
-  end 
+    until input && input.length > 0 
+      puts "Who is your favorite artist?"
+      puts "Enter your favorite artist or exit"
+      input = gets.chomp 
+      if input == Integer
+        input = ""
+        puts "Please enter a name in quotes, not a number"
+      end 
+    end #end of until loop 
+    return input 
+  end #end of method get_user_input 
   
 end #end of class 
