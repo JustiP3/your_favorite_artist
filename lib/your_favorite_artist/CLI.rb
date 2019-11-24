@@ -40,22 +40,31 @@ attr_accessor :input
   end #end of method get_user_input 
   
   def get_user_input_details
-  self.input = ""
-  until input.length > 0 
+  good_input = false
+  until good_input == true 
     puts "1. See related artists"
     puts "2. See top albums"
     puts "3. See top songs"
     puts "What would you like to see?"
     puts "Enter 1-3 or 'exit' to quit"
-    input = gets.chomp 
-    if input != 1 || input != 2 || input != 3
-      input = ""
-      puts "That was an invalid input, please try again"
-    end 
-    if input == 'exit'
-      return 
+    self.input = gets.chomp 
+   
+    if input == "1" 
+      puts "cool input 1"
+      good_input = true 
+    elsif input == "2"
+      puts "cool input 2"
+      good_input = true 
+    elsif input == "3" 
+      puts "cool input 3"
+      good_input = true 
+    elsif input == 'exit'
+      return 'exit'
+    else 
+      puts "sad input dont work"
     end 
   end 
+    self.input 
   end # end of method  
   
   def print_artist_info(artist)
