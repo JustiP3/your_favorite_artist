@@ -15,14 +15,12 @@ attr_accessor :input
     get_user_input_artist
     if input != 'exit'
       fav_artist = Artist.new(input)
-      fav_artist.get_info
-      if fav_artist.error == false 
-        puts "Your favorite artist identifies as #{fav_artist.name}"
-        puts "Artist Bio:"
-        puts fav_artist.short_bio
-      end 
-      input = exit_prompt
+      print_artist_info(fav_artist)
     end 
+    
+   if input != 'exit'
+     input = exit_prompt
+   end 
    
    end #end of program loop
    
@@ -43,6 +41,17 @@ attr_accessor :input
     puts "Enter 'exit' to quit or press 'enter' to continue"
     self.input = gets.chomp 
     
+  end 
+  
+  def print_artist_info(artist)
+    artist.get_info
+      if artist.error == false 
+        puts "Your favorite artist goes by the name #{artist.name}"
+        puts "Artist Bio:"
+        puts artist.short_bio
+      else 
+        puts artist.error_message 
+      end 
   end 
   
   
