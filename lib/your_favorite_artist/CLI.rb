@@ -16,9 +16,11 @@ attr_accessor :input
     if input != 'exit'
       fav_artist = Artist.new(input)
       fav_artist.get_info
-      puts "Your favorite artist identifies as #{fav_artist.name}"
-      puts "Artist Bio:"
-      puts fav_artist.short_bio
+      if fav_artist.error == false 
+        puts "Your favorite artist identifies as #{fav_artist.name}"
+        puts "Artist Bio:"
+        puts fav_artist.short_bio
+      end 
       input = exit_prompt
     end 
    
@@ -42,11 +44,10 @@ attr_accessor :input
     puts "Enter 'exit' to quit or press 'enter' to continue"
     self.input = gets.chomp 
     
-    
   end 
   
   def test_string_input
-    if self.input == Integer
+    if self.input.class == Integer
         self.input = ""
         puts "Please enter a name in quotes, not a number"
     end 
