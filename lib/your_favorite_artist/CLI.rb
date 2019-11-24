@@ -18,11 +18,16 @@ attr_accessor :input
         print_artist_info(fav_artist)
       end 
       exit_prompt
-      if input != 'exit'
+      
+      details_loop = true if input != 'exit' 
+      while details_loop == true 
         get_user_input_details
+        print_details(fav_artist) unless input == 'exit'
+        details_loop = false if self.input == 'exit'
       end 
     
       if input != 'exit'
+        puts "That's it!"
         exit_prompt
       end 
    end #end of program loop
@@ -61,7 +66,7 @@ attr_accessor :input
     elsif input == 'exit'
       return 'exit'
     else 
-      puts "sad input dont work"
+      puts "Invalid input, please try again."
     end 
   end 
     self.input 
@@ -76,6 +81,16 @@ attr_accessor :input
       else 
         puts artist.error_message 
       end 
+  end 
+  
+  def print_details(artist)
+    if input == "1"
+      puts "I'll show you related artists"
+    elsif input == "2"
+      puts "I'll show you top albums"
+    elsif input == "3"
+      puts "I'll show you top songs"
+    end 
   end 
   
     def exit_prompt
