@@ -1,5 +1,5 @@
 class Artist 
-  attr_accessor :name, :bio, :short_bio, :error, :error_message
+  attr_accessor :name, :bio, :short_bio, :error, :error_message, :top_album, :top_album_play_count
 
   def initialize(name)
     @name = name
@@ -19,6 +19,12 @@ class Artist
     self.short_bio << "..."
     end 
 
+  end 
+  
+  def get_top_albums 
+    album_hash = API.get_top_albums(self.name)
+    self.top_album = album_hash[:name]
+    self.top_album_play_count = album_hash[:play_count]
   end 
   
 end 
