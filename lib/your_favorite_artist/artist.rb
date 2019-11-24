@@ -17,6 +17,7 @@ class Artist
     self.short_bio = self.bio.slice(0,50)
     self.short_bio << "..."
     end 
+
   end 
   
 end 

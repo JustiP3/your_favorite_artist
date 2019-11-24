@@ -34,7 +34,6 @@ attr_accessor :input
       puts "Who is your favorite artist?"
       puts "Enter your favorite artist or exit"
       self.input = gets.chomp 
-      test_string_input
     end #end of until loop 
     return input 
   end #end of method get_user_input 
@@ -46,11 +45,5 @@ attr_accessor :input
     
   end 
   
-  def test_string_input
-    if self.input.class == Integer
-        self.input = ""
-        puts "Please enter a name in quotes, not a number"
-    end 
-  end 
   
 end #end of class 
