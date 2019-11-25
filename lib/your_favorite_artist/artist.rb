@@ -1,10 +1,11 @@
 class Artist 
-  attr_accessor :name, :bio, :short_bio, :error, :error_message
+  attr_accessor :name, :bio, :short_bio, :error, :error_message, :albums 
 
   def initialize(name)
     @name = name
     @error = false 
     @error_message = ""
+    @albums = []
   end 
   
   def get_info
@@ -29,6 +30,12 @@ class Artist
   
   def top_album 
     Album.top_album 
+  end 
+  
+  def create_album(album_hash, rank)
+    name = album_hash["name"]
+    play_count = album_hash["playcount"]
+    self.albums << Album.new(name, rank, play_count) 
   end 
   
 

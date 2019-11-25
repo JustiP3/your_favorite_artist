@@ -25,10 +25,17 @@ class API
     #/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY&format=json
     link = "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=#{artist}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
     hash = HTTParty.get(link).parsed_response
+    binding.pry 
+    if hash["topalbums"]["album"].length > 5 
+      hash["topalbums"]["album"].each do |album|
+    else
+    
+    end 
     top_album = {
       :name => hash["topalbums"]["album"][1]["name"],
       :play_count => hash["topalbums"]["album"][1]["playcount"]
     }
+    binding.pry 
   end 
   
   
