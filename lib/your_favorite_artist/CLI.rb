@@ -101,8 +101,23 @@ attr_accessor :input
   end 
   
   def print_tracklist(artist)
-    index = input.to_i - 1 
-    artist.print_tracklist(index)
+    index = nil 
+    case input 
+    when input == "1" 
+      index = 0 
+    when input == "2"
+      index = 1 
+    when input == "3"
+      index = 2 
+    when input == "4"
+      index = 3 
+    when input == "5"
+      index = 4
+    else 
+      index = nil 
+    end 
+    binding.pry 
+    artist.print_tracklist(index) unless index == nil 
   end 
   
     def exit_prompt
