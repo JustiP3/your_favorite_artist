@@ -8,7 +8,12 @@ class Album
     @name = name
     @rank = rank
     @play_count = play_count
-    self << @@all 
+    save 
+  end 
+  
+   def save 
+    my_index = @@all.length
+    @@all[my_index] = self 
   end 
   
   def self.sort
@@ -31,5 +36,6 @@ class Album
     @@all = var if var.class == Array 
   end 
   
+ 
   
 end 

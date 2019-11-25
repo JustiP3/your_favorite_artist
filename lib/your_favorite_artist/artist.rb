@@ -24,7 +24,7 @@ class Artist
   
   def print_top_albums
     API.get_top_albums(self)
-    Album.sort 
+    Album.sort
     Album.all.each do |album|
       puts "#{album.rank}. #{album.name}"
       puts "#{album.play_count} plays on last.fm"
