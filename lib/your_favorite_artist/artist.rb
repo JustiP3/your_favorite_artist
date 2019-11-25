@@ -1,5 +1,5 @@
 class Artist 
-  attr_accessor :name, :bio, :short_bio, :error, :error_message, :top_album, :top_album_play_count
+  attr_accessor :name, :bio, :short_bio, :error, :error_message
 
   def initialize(name)
     @name = name
@@ -26,5 +26,11 @@ class Artist
     self.top_album = album_hash[:name]
     self.top_album_play_count = album_hash[:play_count]
   end 
+  
+  def top_album 
+    Album.top_album 
+  end 
+  
+
   
 end 

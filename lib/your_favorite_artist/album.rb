@@ -11,8 +11,16 @@ class Album
     self << @@all 
   end 
   
-  self.sort
+  def self.sort
     @@all.sort {|a1, a2| a1.rank <=> a2.rank}
+  end 
+  
+  def self.top_album
+    @@all.sort.first 
+  end 
+  
+  def self.clear
+    @@all = []
   end 
   
   

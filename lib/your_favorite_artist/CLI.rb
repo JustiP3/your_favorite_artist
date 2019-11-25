@@ -28,6 +28,7 @@ attr_accessor :input
     
       if input != 'exit'
         puts "That's it!"
+        reset 
         exit_prompt
       end 
    end #end of program loop
@@ -87,7 +88,7 @@ attr_accessor :input
       puts "I'll show you top albums"
       artist.get_top_albums 
       puts "#{artist.name}'s top album is:"
-      puts "#{artist.top_album} with #{artist.top_album_play_count} plays on last.fm!" 
+      puts "#{artist.top_album} with #{artist.top_album.play_count} plays on last.fm!" 
     elsif input == "3"
       puts "I'll show you top songs"
     end 
@@ -97,11 +98,16 @@ attr_accessor :input
     puts "Would you like to continue?"
     puts "Enter 'exit' to quit or press 'enter' to continue"
     self.input = gets.chomp 
+    
   end 
   
   def be_polite_say_goodbye
     puts "Thank you for stopping by!"
     puts "See you next time, friend."
+  end 
+  
+  def reset 
+    Album.clear 
   end 
   
   
