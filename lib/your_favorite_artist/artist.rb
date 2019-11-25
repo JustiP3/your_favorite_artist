@@ -23,6 +23,7 @@ class Artist
   end 
   
   def print_top_albums
+    API.get_top_albums(self)
     Album.sort 
     Album.all.each do |album|
       puts "#{album.rank}. #{album.name}"
@@ -39,6 +40,10 @@ class Artist
     name = album_hash["name"]
     play_count = album_hash["playcount"]
     Album.new(name, rank, play_count) 
+  end 
+  
+  def reset 
+    Album.clear 
   end 
   
 

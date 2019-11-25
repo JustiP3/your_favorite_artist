@@ -28,7 +28,7 @@ attr_accessor :input
     
       if input != 'exit'
         puts "That's it!"
-        reset 
+        artist.reset 
         exit_prompt
       end 
    end #end of program loop
@@ -106,10 +106,7 @@ attr_accessor :input
     puts "See you next time, friend."
   end 
   
-  def reset 
-    Album.clear 
-  end 
-  
+
   
   
 end #end of class 

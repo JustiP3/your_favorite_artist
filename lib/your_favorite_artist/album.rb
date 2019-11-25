@@ -23,5 +23,13 @@ class Album
     @@all = []
   end 
   
+  def self.all 
+    @@all 
+  end 
+  
+  def self.all=(var)
+    @@all = var if var.class == Array 
+  end 
+  
   
 end 
