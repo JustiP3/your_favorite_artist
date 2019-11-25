@@ -33,8 +33,13 @@ class API
     end 
     
     short_list.each.with_index(1) {|album, i| artist.create_album(album, i)}
-    
 
+  end 
+  
+  def self.get_album_info(artist, album)
+    link =  "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&artist=#{artist.name}&album=#{album.name}&format=json"
+    hash = HTTParty.get(link).parsed_response
+    binding.pry 
   end 
   
   

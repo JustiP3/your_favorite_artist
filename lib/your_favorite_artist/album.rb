@@ -2,12 +2,13 @@
 class Album
   @@all = []
   
-  attr_accessor :name, :rank, :play_count
+  attr_accessor :name, :rank, :play_count, :track_list
   
   def initialize (name, rank, play_count)
     @name = name
     @rank = rank
     @play_count = play_count
+    @track_list = []
     save 
   end 
   

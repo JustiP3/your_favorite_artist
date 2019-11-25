@@ -70,6 +70,12 @@ attr_accessor :input
     self.input 
   end # end of method  
   
+  def get_user_input_album_tracklist
+    puts "Would you like to see the tracklist?"
+    puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
+    input = gets.chomp 
+  end 
+  
   def print_artist_info(artist)
     artist.get_info
       if artist.error == false 
@@ -87,11 +93,16 @@ attr_accessor :input
     elsif input == "2"
       puts "I'll show you top albums"
       artist.print_top_albums 
-  #  puts "#{artist.name}'s top album is:"
-  #    puts "#{artist.top_album.name} with #{artist.top_album.play_count} plays on last.fm!" 
+      get_user_input_album_tracklist
+      print_tracklist(artist) unless input == 'exit'
     elsif input == "3"
       puts "I'll show you top songs"
     end 
+  end 
+  
+  def print_tracklist(artist)
+    index = input.to_i - 1 
+    artist.print_tracklist(index)
   end 
   
     def exit_prompt

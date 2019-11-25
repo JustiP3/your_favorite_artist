@@ -42,9 +42,17 @@ class Artist
     Album.new(name, rank, play_count) 
   end 
   
+  def print_tracklist(index)
+    fav_album = Album.all[index]
+    API.get_album_info(self, fav_album)
+    fav_album.track_list.each.with_index(1) {|track, i| puts "#{i}. #{track}"}
+  end 
+  
   def reset 
     Album.clear 
   end 
+  
+  
   
 
   
