@@ -1,5 +1,5 @@
 class Artist 
-  attr_accessor :name, :bio, :short_bio, :error, :error_message, :albums 
+  attr_accessor :name, :bio, :short_bio, :error, :error_message
 
   def initialize(name)
     @name = name
@@ -22,10 +22,13 @@ class Artist
 
   end 
   
-  def get_top_albums 
-    album_hash = API.get_top_albums(self.name)
-    self.top_album = album_hash[:name]
-    self.top_album_play_count = album_hash[:play_count]
+  def print_top_albums
+    Album.sort 
+    Album.all.each do |album|
+      puts "#{album.rank}. #{album.name}"
+      puts "#{album.play_count} plays on last.fm"
+    end 
+    
   end 
   
   def top_album 
@@ -35,7 +38,7 @@ class Artist
   def create_album(album_hash, rank)
     name = album_hash["name"]
     play_count = album_hash["playcount"]
-    self.albums << Album.new(name, rank, play_count) 
+    Album.new(name, rank, play_count) 
   end 
   
 

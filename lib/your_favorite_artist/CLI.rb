@@ -86,9 +86,9 @@ attr_accessor :input
       puts "I'll show you related artists"
     elsif input == "2"
       puts "I'll show you top albums"
-      artist.get_top_albums 
-      puts "#{artist.name}'s top album is:"
-      puts "#{artist.top_album} with #{artist.top_album.play_count} plays on last.fm!" 
+      artist.print_top_albums 
+  #  puts "#{artist.name}'s top album is:"
+  #    puts "#{artist.top_album.name} with #{artist.top_album.play_count} plays on last.fm!" 
     elsif input == "3"
       puts "I'll show you top songs"
     end 
