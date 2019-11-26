@@ -5,7 +5,9 @@ attr_accessor :input
   def initialize 
     @input = ""
   end 
-  
+ 
+ #-----------------------------------------------------------------------------
+ 
   def call 
     puts "--------------------------------"
     puts "Welcome to Your Favorite Artist!"
@@ -18,29 +20,29 @@ attr_accessor :input
         print_artist_info(fav_artist)
       end
       
-      exit_prompt
+      pause unless input == 'exit'
       
       details_loop = true if input != 'exit' 
       while details_loop == true 
         choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
         choice = get_user_input_details
         print_details_level_2(fav_artist) unless input == 'exit'
-        if choice == 2 && input != 'exit'
-          get_user_input_details_album_tracklist unless input == 'exit'
-          print_details_level_3(fav_artist) unless input == 'exit'
+        if choice == "2" && input != 'exit'
+          get_user_input_album_tracklist unless input == 'exit'
+          print_tracklist(fav_artist) unless input == 'exit'
         end 
         details_loop = false if self.input == 'exit'
       end 
-      
      
       puts "That's it!"
       fav_artist.reset 
       exit_prompt
-      end 
+      
    end #end of program loop
    be_polite_say_goodbye 
   end #end of call method 
   
+  #-----------------------------------------------------------------------------
   
   def get_user_input_artist
     until self.input.length > 0 
@@ -102,9 +104,10 @@ attr_accessor :input
     elsif input == "2"
       puts "I'll show you top albums"
       artist.print_top_albums 
-      end 
     elsif input == "3"
       puts "I'll show you top songs"
+    else 
+      puts "That was invalid input"
     end 
   end 
   
@@ -128,7 +131,7 @@ attr_accessor :input
     def exit_prompt
     if input != 'exit'
       puts "Would you like to continue?"
-      puts "Enter 'exit' to quit or press 'enter' to continue"
+      puts "Press 'Enter' to pick a new artist or type 'exit' to quit"
       self.input = gets.chomp 
     end 
     
@@ -139,6 +142,10 @@ attr_accessor :input
     puts "See you next time, friend."
   end 
   
+  def pause 
+    puts "Press enter to continue"
+    gets
+  end 
 
   
   
