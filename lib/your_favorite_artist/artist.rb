@@ -1,11 +1,12 @@
 class Artist 
-  attr_accessor :name, :bio, :short_bio, :error, :error_message
+  attr_accessor :name, :bio, :short_bio, :error, :error_message, :related_artists 
 
   def initialize(name)
     @name = name
     @error = false 
     @error_message = ""
     @albums = []
+    @related_artists = []
   end 
   
   def get_info
@@ -45,6 +46,7 @@ class Artist
   def print_tracklist(index)
     fav_album = Album.all[index]
     API.get_album_info(self, fav_album)
+    puts ""
     fav_album.track_list.each.with_index(1) {|track, i| puts "#{i}. #{track}"}
   end 
   
@@ -52,6 +54,9 @@ class Artist
     Album.clear 
   end 
   
+  def get_related_artist
+    
+  end 
   
   
 

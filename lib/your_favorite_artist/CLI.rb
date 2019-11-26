@@ -1,10 +1,9 @@
 class CLI 
 
-attr_accessor :input, :level 
+attr_accessor :input
 
   def initialize 
     @input = ""
-    @level = "1"
   end 
   
   def call 
@@ -23,17 +22,20 @@ attr_accessor :input, :level
       
       details_loop = true if input != 'exit' 
       while details_loop == true 
-        level = "2"
-        get_user_input_details
-        print_details(fav_artist) unless input == 'exit'
+        choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
+        choice = get_user_input_details
+        print_details_level_2(fav_artist) unless input == 'exit'
+        if choice == 2 && input != 'exit'
+          get_user_input_details_album_tracklist unless input == 'exit'
+          print_details_level_3(fav_artist) unless input == 'exit'
+        end 
         details_loop = false if self.input == 'exit'
       end 
       
-      if input == 'exit' && level == "2"
-        puts "That's it!"
-        level = "1"
-        fav_artist.reset 
-        exit_prompt
+     
+      puts "That's it!"
+      fav_artist.reset 
+      exit_prompt
       end 
    end #end of program loop
    be_polite_say_goodbye 
@@ -52,11 +54,13 @@ attr_accessor :input, :level
   def get_user_input_details
   good_input = false
   until good_input == true 
+    puts ""
     puts "1. See related artists"
     puts "2. See top albums"
     puts "3. See top songs"
     puts "What would you like to see?"
     puts "Enter 1-3 or 'exit' to quit"
+    
     self.input = gets.chomp 
    
     if input == "1" 
@@ -71,7 +75,7 @@ attr_accessor :input, :level
       puts "Invalid input, please try again."
     end 
   end 
-    self.input 
+    input 
   end # end of method  
   
   def get_user_input_album_tracklist
@@ -92,16 +96,12 @@ attr_accessor :input, :level
       end 
   end 
   
-  def print_details(artist)
+  def print_details_level_2(artist)
     if input == "1"
       puts "I'll show you related artists"
     elsif input == "2"
       puts "I'll show you top albums"
       artist.print_top_albums 
-      get_user_input_album_tracklist
-      if input != 'exit'
-        level = "3"
-        print_tracklist(artist)
       end 
     elsif input == "3"
       puts "I'll show you top songs"
