@@ -1,9 +1,10 @@
 class CLI 
 
-attr_accessor :input
+attr_accessor :input, :level 
 
   def initialize 
     @input = ""
+    @level = "1"
   end 
   
   def call 
@@ -16,19 +17,22 @@ attr_accessor :input
       if input != 'exit'
         fav_artist = Artist.new(input)
         print_artist_info(fav_artist)
-      end 
+      end
+      
       exit_prompt
       
       details_loop = true if input != 'exit' 
       while details_loop == true 
+        level = "2"
         get_user_input_details
         print_details(fav_artist) unless input == 'exit'
         details_loop = false if self.input == 'exit'
       end 
-    
-      if input != 'exit'
+      
+      if input == 'exit' && level == "2"
         puts "That's it!"
-        artist.reset 
+        level = "1"
+        fav_artist.reset 
         exit_prompt
       end 
    end #end of program loop
@@ -71,6 +75,7 @@ attr_accessor :input
   end # end of method  
   
   def get_user_input_album_tracklist
+    puts ""
     puts "Would you like to see the tracklist?"
     puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
     input = gets.chomp 
@@ -94,7 +99,10 @@ attr_accessor :input
       puts "I'll show you top albums"
       artist.print_top_albums 
       get_user_input_album_tracklist
-      print_tracklist(artist) unless input == 'exit'
+      if input != 'exit'
+        level = "3"
+        print_tracklist(artist)
+      end 
     elsif input == "3"
       puts "I'll show you top songs"
     end 
@@ -103,27 +111,26 @@ attr_accessor :input
   def print_tracklist(artist)
     index = nil 
     case input 
-    when input == "1" 
+    when "1" 
       index = 0 
-    when input == "2"
+    when "2"
       index = 1 
-    when input == "3"
+    when "3"
       index = 2 
-    when input == "4"
+    when "4"
       index = 3 
-    when input == "5"
+    when "5"
       index = 4
-    else 
-      index = nil 
     end 
-    binding.pry 
     artist.print_tracklist(index) unless index == nil 
   end 
   
     def exit_prompt
-    puts "Would you like to continue?"
-    puts "Enter 'exit' to quit or press 'enter' to continue"
-    self.input = gets.chomp 
+    if input != 'exit'
+      puts "Would you like to continue?"
+      puts "Enter 'exit' to quit or press 'enter' to continue"
+      self.input = gets.chomp 
+    end 
     
   end 
   
