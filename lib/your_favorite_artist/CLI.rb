@@ -26,10 +26,12 @@ attr_accessor :input
       while details_loop == true 
         choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
         choice = get_user_input_details
-        print_details_level_2(fav_artist) unless input == 'exit'
+        print_details(fav_artist) unless input == 'exit'
+        pause unless input == 'exit'
         if choice == "2" && input != 'exit'
           get_user_input_album_tracklist unless input == 'exit'
           print_tracklist(fav_artist) unless input == 'exit'
+          pause unless input == 'exit'
         end 
         details_loop = false if self.input == 'exit'
       end 
@@ -44,6 +46,10 @@ attr_accessor :input
   
   #-----------------------------------------------------------------------------
   
+  
+  ## Get user input methods ## 
+  
+  # 1. Get favorite artist 
   def get_user_input_artist
     until self.input.length > 0 
       puts "Who is your favorite artist?"
@@ -53,6 +59,7 @@ attr_accessor :input
     return input 
   end #end of method get_user_input 
   
+  #2. Get input for which details user wants to see 
   def get_user_input_details
   good_input = false
   until good_input == true 
@@ -80,6 +87,7 @@ attr_accessor :input
     input 
   end # end of method  
   
+  #3. Get input for which album user wants to see tracklist for 
   def get_user_input_album_tracklist
     puts ""
     puts "Would you like to see the tracklist?"
@@ -87,6 +95,9 @@ attr_accessor :input
     input = gets.chomp 
   end 
   
+  ## Print to console methods ## 
+  
+  #1. Print artist name and bio 
   def print_artist_info(artist)
     artist.get_info
       if artist.error == false 
@@ -98,11 +109,11 @@ attr_accessor :input
       end 
   end 
   
-  def print_details_level_2(artist)
+  #2. Print level 1 details
+  def print_details(artist)
     if input == "1"
-      puts "I'll show you related artists"
+      artist.print_related_artists 
     elsif input == "2"
-      puts "I'll show you top albums"
       artist.print_top_albums 
     elsif input == "3"
       puts "I'll show you top songs"
@@ -111,6 +122,7 @@ attr_accessor :input
     end 
   end 
   
+  #3. Print level 2 details - Album tracklist 
   def print_tracklist(artist)
     index = nil 
     case input 

@@ -7,11 +7,15 @@ class API
 # artist that exists but has no bio "2345"
   link = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{artist}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
   hash = HTTParty.get(link).parsed_response 
-  
   if hash["error"] == 6 
     artist_info = hash 
   else 
-    artist_info = {:name => hash["artist"]["name"]}
+    related_artists = []
+    hash["artist"]["similar"]["artist"].each {|artist_hash| artist_hash["name"] << related_artists}
+    artist_info = {
+      :name => hash["artist"]["name"],
+      :similar => related_artists
+    }
       if hash["artist"]["bio"]["summary"].include?("https://www.last.fm/music/+noredirect")
         artist_info[:bio] = "Sorry, this artist does not have a bio."
       else 
@@ -41,6 +45,8 @@ class API
     hash = HTTParty.get(link).parsed_response
     hash["album"]["tracks"]["track"].each {|track| album.track_list << track["name"]}
   end 
+  
+ 
   
   
 

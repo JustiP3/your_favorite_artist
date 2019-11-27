@@ -17,8 +17,9 @@ class Artist
     else 
     self.name = temp_hash[:name]
     self.bio = temp_hash[:bio]
-    self.short_bio = self.bio.slice(0,50)
+    self.short_bio = self.bio.slice(0,75)
     self.short_bio << "..."
+    self.related_artists = temp_hash[:similar]
     end 
 
   end 
@@ -54,10 +55,10 @@ class Artist
     Album.clear 
   end 
   
-  def get_related_artist
-    
+  def print_related_artists 
+    puts "I'll show you..."
+    related_artists.each.with_index(1) {|name, i| puts "#{i}. #{name}"}
   end 
-  
   
 
   
