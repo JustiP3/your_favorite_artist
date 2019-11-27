@@ -92,7 +92,24 @@ attr_accessor :input
     puts ""
     puts "Would you like to see the tracklist?"
     puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
-    input = gets.chomp 
+    good_input = false 
+    while good_input == false 
+      input = gets.chomp 
+      case input 
+      when "1"
+        good_input = true 
+       when "2"
+        good_input = true 
+       when "3"
+        good_input = true 
+       when "4"
+        good_input = true 
+       when "5"
+        good_input = true 
+       when "exit"
+        good_input = true 
+      end 
+    end 
     binding.pry 
   end 
   
