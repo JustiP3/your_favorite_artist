@@ -27,7 +27,7 @@ attr_accessor :input
         choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
         choice = get_user_input_details
         print_details(fav_artist) unless input == 'exit'
-        pause unless input == 'exit'
+        
         if choice == "2" && input != 'exit'
           get_user_input_album_tracklist unless input == 'exit'
           print_tracklist(fav_artist) unless input == 'exit'
@@ -79,7 +79,7 @@ attr_accessor :input
     elsif input == "3" 
       good_input = true 
     elsif input == 'exit'
-      return 'exit'
+      good_input = true 
     else 
       puts "Invalid input, please try again."
     end 
@@ -93,6 +93,7 @@ attr_accessor :input
     puts "Would you like to see the tracklist?"
     puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
     input = gets.chomp 
+    binding.pry 
   end 
   
   ## Print to console methods ## 
@@ -137,6 +138,7 @@ attr_accessor :input
     when "5"
       index = 4
     end 
+    binding.pry 
     artist.print_tracklist(index) unless index == nil 
   end 
   

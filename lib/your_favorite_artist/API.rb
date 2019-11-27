@@ -11,7 +11,7 @@ class API
     artist_info = hash 
   else 
     related_artists = []
-    hash["artist"]["similar"]["artist"].each {|artist_hash| artist_hash["name"] << related_artists}
+    hash["artist"]["similar"]["artist"].each {|artist_hash| related_artists.push(artist_hash["name"])}
     artist_info = {
       :name => hash["artist"]["name"],
       :similar => related_artists
