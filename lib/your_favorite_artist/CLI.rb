@@ -94,8 +94,8 @@ attr_accessor :input
     puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
     good_input = false 
     while good_input == false 
-      input = gets.chomp 
-      case input 
+      self.input = gets.chomp 
+      case self.input 
       when "1"
         good_input = true 
        when "2"
@@ -143,7 +143,8 @@ attr_accessor :input
   #3. Print level 2 details - Album tracklist 
   def print_tracklist(artist)
     index = nil 
-    case input 
+    binding.pry 
+    case self.input 
     when "1" 
       index = 0 
     when "2"
