@@ -63,6 +63,7 @@ class Artist
   
   def print_top_songs 
     self.top_songs = API.get_top_tracks(self)
+    
   end 
   
 
