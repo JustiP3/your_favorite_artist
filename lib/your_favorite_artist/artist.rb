@@ -1,5 +1,5 @@
 class Artist 
-  attr_accessor :name, :bio, :short_bio, :error, :error_message, :related_artists 
+  attr_accessor :name, :bio, :short_bio, :error, :error_message, :related_artists, :top_songs 
 
   def initialize(name)
     @name = name
@@ -7,6 +7,7 @@ class Artist
     @error_message = ""
     @albums = []
     @related_artists = []
+    @top_songs = []
   end 
   
   def get_info
@@ -58,6 +59,10 @@ class Artist
   def print_related_artists 
     puts "I'll show you..."
     related_artists.each.with_index(1) {|name, i| puts "#{i}. #{name}"}
+  end 
+  
+  def print_top_songs 
+    self.top_songs = API.get_top_tracks(self)
   end 
   
 

@@ -3,8 +3,6 @@ class API
 
 
   def self.get_artist_info(artist)
-#  artist_name_not_on_lastfm = "somesuperobscurename"
-# artist that exists but has no bio "2345"
   link = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{artist}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
   hash = HTTParty.get(link).parsed_response 
   if hash["error"] == 6 
@@ -46,6 +44,11 @@ class API
     hash["album"]["tracks"]["track"].each {|track| album.track_list << track["name"]}
   end 
   
+  def self.get_top_tracks(artist)
+    link = "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=#{artist.name}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
+    hash = HTTParty.get(link).parsed_response
+    binding.pry 
+  end 
  
   
   

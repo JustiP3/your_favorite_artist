@@ -110,7 +110,6 @@ attr_accessor :input
         good_input = true 
       end 
     end 
-    binding.pry 
   end 
   
   ## Print to console methods ## 
@@ -134,7 +133,7 @@ attr_accessor :input
     elsif input == "2"
       artist.print_top_albums 
     elsif input == "3"
-      puts "I'll show you top songs"
+      artist.print_top_songs
     else 
       puts "That was invalid input"
     end 
@@ -143,7 +142,6 @@ attr_accessor :input
   #3. Print level 2 details - Album tracklist 
   def print_tracklist(artist)
     index = nil 
-    binding.pry 
     case self.input 
     when "1" 
       index = 0 
@@ -156,7 +154,6 @@ attr_accessor :input
     when "5"
       index = 4
     end 
-    binding.pry 
     artist.print_tracklist(index) unless index == nil 
   end 
   
