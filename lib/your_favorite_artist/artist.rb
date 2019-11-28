@@ -57,7 +57,6 @@ class Artist
   end 
   
   def print_related_artists 
-    puts "I'll show you..."
     related_artists.each.with_index(1) {|name, i| puts "#{i}. #{name}"}
   end 
   
