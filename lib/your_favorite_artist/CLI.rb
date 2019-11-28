@@ -31,6 +31,7 @@ attr_accessor :input
         if choice == "1" && input != 'exit'
           related_artist = get_user_input_related_artist
           print_related_artist_top_songs(related_artist) unless input == 'exit'
+          pause unless input == 'exit'
         elsif choice == "2" && input != 'exit'
           get_user_input_album_tracklist
           print_tracklist(fav_artist) unless input == 'exit'
@@ -117,7 +118,28 @@ attr_accessor :input
   
   #returns artist instance 
   def get_user_input_related_artist
-    
+    puts "Would you like to see one of these artist's top songs?"
+    puts "Enter 1-5 to select an artist or type 'exit'"
+    good_input = false 
+    while good_input == false 
+      self.input = gets.chomp 
+      case input 
+      when "1"
+        good_input = true 
+      when "2"
+        good_input = true 
+      when "3"
+        good_input = true 
+      when "4"
+        good_input = true 
+      when "5"
+        good_input = true
+      when "exit"
+        good_input = true 
+      else 
+        puts "Invalid input, Please enter 1-5, or 'exit'"
+      end 
+    end 
   end 
   
   ## Print to console methods ## 
