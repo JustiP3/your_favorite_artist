@@ -25,7 +25,13 @@ class Artist
 
   end 
   
-  def print_top_albums
+  def create_album(album_hash, rank)
+    name = album_hash["name"]
+    play_count = album_hash["playcount"]
+    Album.new(name, rank, play_count) 
+  end 
+  
+    def print_top_albums
     API.get_top_albums(self)
     Album.sort
     Album.all.each do |album|
@@ -35,25 +41,11 @@ class Artist
     
   end 
   
-  def top_album 
-    Album.top_album 
-  end 
-  
-  def create_album(album_hash, rank)
-    name = album_hash["name"]
-    play_count = album_hash["playcount"]
-    Album.new(name, rank, play_count) 
-  end 
-  
   def print_tracklist(index)
     fav_album = Album.all[index]
     API.get_album_info(self, fav_album)
     puts ""
     fav_album.track_list.each.with_index(1) {|track, i| puts "#{i}. #{track}"}
-  end 
-  
-  def reset 
-    Album.clear 
   end 
   
   def print_related_artists 
@@ -65,6 +57,8 @@ class Artist
     top_songs.each.with_index(1) {|song, i| puts "#{i}. #{song}"}
   end 
   
-
+ def reset 
+    Album.clear 
+  end 
   
 end 

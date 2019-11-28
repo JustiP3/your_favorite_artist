@@ -21,10 +21,6 @@ class Album
     @@all.sort {|a1, a2| a1.rank <=> a2.rank}
   end 
   
-  def self.top_album
-    @@all.sort.first 
-  end 
-  
   def self.clear
     @@all = []
   end 
@@ -36,7 +32,5 @@ class Album
   def self.all=(var)
     @@all = var if var.class == Array 
   end 
-  
- 
   
 end 

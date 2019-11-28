@@ -1,6 +1,5 @@
 class API  
-#key a9ca6c61110b8a16ee8dd7a8d661ed33  
-
+#key a9ca6c61110b8a16ee8dd7a8d661ed33
 
   def self.get_artist_info(artist)
   link = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{artist}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
@@ -51,8 +50,5 @@ class API
     hash["toptracks"]["track"].each {|song| top_tracks.push(song["name"])}
     top_tracks.slice(0..4)
   end 
- 
-  
-  
 
 end 

@@ -28,8 +28,11 @@ attr_accessor :input
         choice = get_user_input_details
         print_details(fav_artist) unless input == 'exit'
         
-        if choice == "2" && input != 'exit'
-          get_user_input_album_tracklist unless input == 'exit'
+        if choice == "1" && input != 'exit'
+          related_artist = get_user_input_related_artist
+          print_related_artist_top_songs(related_artist) unless input == 'exit'
+        elsif choice == "2" && input != 'exit'
+          get_user_input_album_tracklist
           print_tracklist(fav_artist) unless input == 'exit'
           pause unless input == 'exit'
         end 
@@ -112,6 +115,11 @@ attr_accessor :input
     end 
   end 
   
+  #returns artist instance 
+  def get_user_input_related_artist
+    
+  end 
+  
   ## Print to console methods ## 
   
   #1. Print artist name and bio 
@@ -157,13 +165,15 @@ attr_accessor :input
     artist.print_tracklist(index) unless index == nil 
   end 
   
-    def exit_prompt
-    if input != 'exit'
-      puts "Would you like to continue?"
-      puts "Press 'Enter' to pick a new artist or type 'exit' to quit"
-      self.input = gets.chomp 
-    end 
-    
+  def print_related_artist_top_songs(artist)
+  end 
+  
+  ### Misc. Helper Methods ### 
+  def exit_prompt
+    self.input = ""
+    puts "Would you like to continue?"
+    puts "Press 'Enter' to pick a new artist or type 'exit' to quit"
+    self.input = gets.chomp 
   end 
   
   def be_polite_say_goodbye
