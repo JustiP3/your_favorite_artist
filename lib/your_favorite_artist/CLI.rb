@@ -26,6 +26,7 @@ attr_accessor :input
       while details_loop == true 
         choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
         choice = get_user_input_details
+        
         print_details(fav_artist) unless input == 'exit'
         
         if choice == "1" && input != 'exit'
@@ -117,29 +118,37 @@ attr_accessor :input
   end 
   
   #returns artist instance 
-  def get_user_input_related_artist
+  def get_user_input_related_artist(fav)
     puts "Would you like to see one of these artist's top songs?"
     puts "Enter 1-5 to select an artist or type 'exit'"
     good_input = false 
     while good_input == false 
       self.input = gets.chomp 
+      index = -1 
       case input 
       when "1"
         good_input = true 
+        index = 0 
       when "2"
         good_input = true 
+        index = 1 
       when "3"
         good_input = true 
+        index = 2 
       when "4"
         good_input = true 
+        index = 3
       when "5"
         good_input = true
+        index = 4
       when "exit"
         good_input = true 
       else 
         puts "Invalid input, Please enter 1-5, or 'exit'"
       end 
     end 
+    Artist.new(fav.related_artists[index])
+    binding.pry 
   end 
   
   ## Print to console methods ## 
