@@ -123,9 +123,9 @@ attr_accessor :input
     puts "Would you like to see one of these artist's top songs?"
     puts "Enter 1-5 to select an artist or type 'exit'"
     good_input = false 
+    index = -1 
     while good_input == false 
       self.input = gets.chomp 
-      index = -1 
       case input 
       when "1"
         good_input = true 
@@ -197,7 +197,9 @@ attr_accessor :input
   end 
   
   def print_related_artist_top_songs(artist)
-    
+    artist.get_info
+    puts "Here are the top songs for #{artist.name}"
+    artist.print_top_songs
   end 
   
   ### Misc. Helper Methods ### 
