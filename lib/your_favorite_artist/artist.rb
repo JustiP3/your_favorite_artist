@@ -44,7 +44,6 @@ class Artist
   def print_tracklist(index)
     fav_album = Album.all[index]
     API.get_album_info(self, fav_album)
-    puts ""
     fav_album.track_list.each.with_index(1) {|track, i| puts "#{i}. #{track}"}
   end 
   
