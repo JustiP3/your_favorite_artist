@@ -30,7 +30,7 @@ attr_accessor :input
         print_details(fav_artist) unless input == 'exit'
         
         if choice == "1" && input != 'exit'
-          related_artist = get_user_input_related_artist
+          related_artist = get_user_input_related_artist(fav_artist)
           print_related_artist_top_songs(related_artist) unless input == 'exit'
           pause unless input == 'exit'
         elsif choice == "2" && input != 'exit'
@@ -117,7 +117,8 @@ attr_accessor :input
     end 
   end 
   
-  #returns artist instance 
+  #4. Which related artist do you want to see the top 5 tracks for?
+  #returns artist instance of the related artist 
   def get_user_input_related_artist(fav)
     puts "Would you like to see one of these artist's top songs?"
     puts "Enter 1-5 to select an artist or type 'exit'"
@@ -147,8 +148,7 @@ attr_accessor :input
         puts "Invalid input, Please enter 1-5, or 'exit'"
       end 
     end 
-    Artist.new(fav.related_artists[index])
-    binding.pry 
+    Artist.new(fav.related_artists[index]) unless input == 'exit'
   end 
   
   ## Print to console methods ## 
@@ -197,6 +197,7 @@ attr_accessor :input
   end 
   
   def print_related_artist_top_songs(artist)
+    
   end 
   
   ### Misc. Helper Methods ### 
