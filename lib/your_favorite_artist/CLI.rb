@@ -9,25 +9,20 @@ attr_accessor :input
  #-----------------------------------------------------------------------------
  
   def call 
-    puts "--------------------------------"
-    puts "Welcome to Your Favorite Artist!"
-    puts "--------------------------------"
+    
+    welcome 
     
     while self.input != 'exit'
-      get_user_input_artist
-      if input != 'exit'
-        fav_artist = Artist.new(input)
-        print_artist_info(fav_artist)
-      end
-      
+      your_artist = pick_an_artist
       pause unless input == 'exit'
       
       details_loop = true if input != 'exit' 
       while details_loop == true 
-        choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
-        choice = get_user_input_details
+        # 1=relatedartist, 2=topalbums, 3=top songs
+        choice = level_one_details(your_artist)
         
-        print_details(fav_artist) unless input == 'exit'
+        
+
         
         if choice == "1" && input != 'exit'
           related_artist = get_user_input_related_artist(fav_artist)
@@ -51,6 +46,30 @@ attr_accessor :input
   
   #-----------------------------------------------------------------------------
   
+  
+  ## Abstracting program flow helper methods ##
+  
+  def welcome 
+    puts "--------------------------------"
+    puts "Welcome to Your Favorite Artist!"
+    puts "--------------------------------"
+  end 
+  
+  def pick_an_artist
+    get_user_input_artist
+    if input != 'exit'
+      fav_artist = Artist.new(input)
+      print_artist_info(fav_artist)
+    end
+    fav_artist
+  end 
+  
+  def level_one_details(fav_artist)
+    choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
+    choice = get_user_input_details
+    print_details(fav_artist) unless input == 'exit'
+    choice 
+  end 
   
   ## Get user input methods ## 
   
@@ -196,6 +215,7 @@ attr_accessor :input
     artist.print_tracklist(index) unless index == nil 
   end 
   
+  #4. Print level 2 details - Top songs of related artist 
   def print_related_artist_top_songs(artist)
     artist.get_info
     puts "Here are the top songs for #{artist.name}"
