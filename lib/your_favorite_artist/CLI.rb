@@ -18,28 +18,11 @@ attr_accessor :input
       
       details_loop = true if input != 'exit' 
       while details_loop == true 
-        # 1=relatedartist, 2=topalbums, 3=top songs
-        choice = level_one_details(your_artist)
-        
-        
-
-        
-        if choice == "1" && input != 'exit'
-          related_artist = get_user_input_related_artist(fav_artist)
-          print_related_artist_top_songs(related_artist) unless input == 'exit'
-          pause unless input == 'exit'
-        elsif choice == "2" && input != 'exit'
-          get_user_input_album_tracklist
-          print_tracklist(fav_artist) unless input == 'exit'
-          pause unless input == 'exit'
-        end 
+        choice = level_one_details(your_artist) # 1=relatedartist, 2=topalbums, 3=top songs
+        level_two_details(your_artist, choice)
         details_loop = false if self.input == 'exit'
       end 
-     
-      puts "That's it!"
-      fav_artist.reset 
-      exit_prompt
-      
+      exit_prompt(your_artist)
    end #end of program loop
    be_polite_say_goodbye 
   end #end of call method 
@@ -69,6 +52,18 @@ attr_accessor :input
     choice = get_user_input_details
     print_details(fav_artist) unless input == 'exit'
     choice 
+  end 
+  
+  def level_two_details(fav_artist, choice)
+    if choice == "1" && input != 'exit'
+      related_artist = get_user_input_related_artist(fav_artist)
+      print_related_artist_top_songs(related_artist) unless input == 'exit'
+      pause unless input == 'exit'
+    elsif choice == "2" && input != 'exit'
+      get_user_input_album_tracklist
+      print_tracklist(fav_artist) unless input == 'exit'
+      pause unless input == 'exit'
+    end 
   end 
   
   ## Get user input methods ## 
@@ -223,7 +218,9 @@ attr_accessor :input
   end 
   
   ### Misc. Helper Methods ### 
-  def exit_prompt
+  def exit_prompt(fav_artist)
+    fav_artist.reset 
+    puts "That's it!"
     self.input = ""
     puts "Would you like to continue?"
     puts "Press 'Enter' to pick a new artist or type 'exit' to quit"
