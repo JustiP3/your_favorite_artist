@@ -29,7 +29,7 @@ attr_accessor :input
   #-----------------------------------------------------------------------------
   
   
-  ## Abstracting program flow helper methods ##
+  ## Program flow helper methods ##
   
   def welcome 
     puts "--------------------------------"
@@ -68,7 +68,7 @@ attr_accessor :input
   end 
   
     def exit_prompt(fav_artist)
-    fav_artist.reset 
+    Album.clear 
     self.input = ""
     puts "--------------------------------"
     puts "Would you like to pick a different artist?"

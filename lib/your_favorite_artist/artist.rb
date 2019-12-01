@@ -55,9 +55,6 @@ class Artist
     self.top_songs = API.get_top_tracks(self)
     top_songs.each.with_index(1) {|song, i| puts "#{i}. #{song}"}
   end 
-  
- def reset 
-    Album.clear 
-  end 
+
   
 end 
