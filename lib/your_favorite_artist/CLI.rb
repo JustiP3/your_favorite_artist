@@ -17,8 +17,8 @@ attr_accessor :input
       
       details_loop = true unless input == 'exit' 
       while details_loop == true 
-        choice = level_one_details(your_artist) # 1=relatedartist, 2=topalbums, 3=top songs
-        level_two_details(your_artist, choice)
+        details_type = level_one_details(your_artist) # 1=relatedartist, 2=topalbums, 3=top songs
+        level_two_details(your_artist, details_type)
         details_loop = false if self.input == 'exit'
       end 
       exit_prompt(your_artist)
@@ -45,26 +45,29 @@ attr_accessor :input
       self.input = 'exit' if fav_artist.error == true 
       pause
     end
-     
     fav_artist
   end 
   
   def level_one_details(fav_artist)
-    choice = "0" # 1=relatedartist, 2=topalbums, 3=top songs
-    choice = get_user_input_details
+    details_type = "0" # 1=relatedartist, 2=topalbums, 3=top songs
+    details_type = get_user_input_details
     print_details(fav_artist) unless input == 'exit'
-    choice 
+    details_type 
   end 
   
-  def level_two_details(fav_artist, choice)
-    if choice == "1" && input != 'exit'
+  def level_two_details(fav_artist, details_type)
+    if details_type == "1" && input != 'exit'
       related_artist = get_user_input_related_artist(fav_artist)
-      print_related_artist_top_songs(related_artist) unless input == 'exit'
-      pause unless input == 'exit'
-    elsif choice == "2" && input != 'exit'
+      if input != 'exit' && input != 'n'
+        print_related_artist_top_songs(related_artist) 
+        pause unless input == 'exit'
+      end 
+    elsif details_type == "2" && input != 'exit'
       get_user_input_album_tracklist
-      print_tracklist(fav_artist) unless input == 'exit'
-      pause unless input == 'exit'
+      if input != 'exit' && input != 'n'
+        print_tracklist(fav_artist) 
+        pause unless input == 'exit'
+      end 
     end 
   end 
   
@@ -141,7 +144,7 @@ attr_accessor :input
     end 
     
     while good_input == false 
-      puts "Enter 1-#{Album.size} for album selection, Press Enter to continue, or type 'exit'"
+      puts "Enter 1-#{Album.size} for album selection, or type 'exit'"
       self.input = gets.chomp 
       case self.input 
       when "1"
@@ -231,12 +234,15 @@ attr_accessor :input
   #2. Print level 1 details
   def print_details(artist)
     if input == "1"
+      puts "--------------------------------"
       puts "Related artists for #{artist.name}:"
       artist.print_related_artists 
     elsif input == "2"
+      puts "--------------------------------"
       puts "Top albums for #{artist.name}:"
       artist.print_top_albums 
     elsif input == "3"
+      puts "--------------------------------"
       puts "Top songs for #{artist.name}:"
       artist.print_top_songs
     end 
@@ -258,6 +264,7 @@ attr_accessor :input
       index = 4
     end 
     if index != nil 
+      puts "--------------------------------"
       puts "Here is the tracklist for the album"
       artist.print_tracklist(index) 
     end 
@@ -267,6 +274,7 @@ attr_accessor :input
   def print_related_artist_top_songs(artist)
     if artist.class == Artist 
       artist.get_info
+      puts "--------------------------------"
       puts "Here are the top songs for #{artist.name}"
       artist.print_top_songs
     end 
