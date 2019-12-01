@@ -245,6 +245,7 @@ attr_accessor :input
       puts "--------------------------------"
       puts "Top songs for #{artist.name}:"
       artist.print_top_songs
+      pause 
     end 
   end 
   
