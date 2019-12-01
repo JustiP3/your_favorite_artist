@@ -170,32 +170,40 @@ attr_accessor :input
       good_input = true 
     end 
     
+    number_of_related_artists = fav.related_artists.size 
+    
+    if number_of_related_artists == 0 
+      puts "Sorry this artist does not have any related artists."
+      good_input = true 
+    end 
+    
     index = -1 
     while good_input == false 
-    puts "Enter 1-5 to select an artist or type 'exit'"
+    puts "Enter 1-#{number_of_related_artists} to select an artist or type 'exit'"
       self.input = gets.chomp 
       case input 
       when "1"
         good_input = true 
         index = 0 
       when "2"
-        good_input = true 
+        good_input = true unless number_of_related_artists < 2  
         index = 1 
       when "3"
-        good_input = true 
+        good_input = true unless number_of_related_artists < 3 
         index = 2 
       when "4"
-        good_input = true 
+        good_input = true unless number_of_related_artists < 4 
         index = 3
       when "5"
-        good_input = true
+        good_input = true unless number_of_related_artists < 5 
         index = 4
       when "exit"
         good_input = true 
       else 
-        puts "Invalid input, Please enter 1-5, or 'exit'"
+        puts "Invalid input, Please enter 1-#{number_of_related_artists}, or 'exit'"
       end 
     end 
+    
     if input != 'exit' && index != -1 
       Artist.new(fav.related_artists[index]) 
     else 
