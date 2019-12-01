@@ -23,7 +23,6 @@ class API
   end 
   
   def self.get_top_albums(artist)
-    #/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY&format=json
     link = "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=#{artist.name}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
     hash = HTTParty.get(link).parsed_response
   

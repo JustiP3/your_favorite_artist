@@ -23,9 +23,9 @@ attr_accessor :input
         details_loop = false if self.input == 'exit'
       end 
       exit_prompt(your_artist)
-   end #end of program loop
+   end
    be_polite_say_goodbye 
-  end #end of call method 
+  end 
   
   #-----------------------------------------------------------------------------
   
@@ -138,19 +138,19 @@ attr_accessor :input
     end 
     
     while good_input == false 
-      puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
+      puts "Enter 1-#{Album.size} for album selection, Press Enter to continue, or type 'exit'"
       self.input = gets.chomp 
       case self.input 
       when "1"
-        good_input = true 
+        good_input = true unless Album.size < 1 
        when "2"
-        good_input = true 
+        good_input = true unless Album.size < 2  
        when "3"
-        good_input = true 
+        good_input = true unless Album.size < 3 
        when "4"
-        good_input = true 
+        good_input = true unless Album.size < 4 
        when "5"
-        good_input = true 
+        good_input = true unless Album.size < 5 
        when "exit"
         good_input = true 
       end 
@@ -207,7 +207,9 @@ attr_accessor :input
   def print_artist_info(artist)
     artist.get_info
       if artist.error == false 
+        puts "--------------------------------"
         puts "You picked #{artist.name}!"
+        puts "--------------------------------"
         puts "Artist Bio:"
         puts artist.short_bio
       else 
@@ -218,13 +220,14 @@ attr_accessor :input
   #2. Print level 1 details
   def print_details(artist)
     if input == "1"
+      puts "Related artists for #{artist.name}:"
       artist.print_related_artists 
     elsif input == "2"
+      puts "Top albums for #{artist.name}:"
       artist.print_top_albums 
     elsif input == "3"
+      puts "Top songs for #{artist.name}:"
       artist.print_top_songs
-    else 
-      puts "That was invalid input"
     end 
   end 
   

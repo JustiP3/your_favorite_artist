@@ -33,4 +33,8 @@ class Album
     @@all = var if var.class == Array 
   end 
   
+  def self.size 
+    @@all.size 
+  end 
+  
 end 
