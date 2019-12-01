@@ -42,9 +42,10 @@ attr_accessor :input
     if input != 'exit'
       fav_artist = Artist.new(input)
       print_artist_info(fav_artist)
+      self.input = 'exit' if fav_artist.error == true 
+      pause
     end
-    self.input = 'exit' if fav_artist.error == true 
-    pause 
+     
     fav_artist
   end 
   

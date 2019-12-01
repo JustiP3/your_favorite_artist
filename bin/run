@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+
 require_relative "../lib/your_favorite_artist.rb"
  
 CLI.new.call
