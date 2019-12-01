@@ -5,7 +5,6 @@ class Artist
     @name = name
     @error = false 
     @error_message = ""
-    @albums = []
     @related_artists = []
     @top_songs = []
   end 

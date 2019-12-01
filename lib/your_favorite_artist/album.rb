@@ -1,4 +1,3 @@
-#This class only interacts with the artist class
 class Album
   @@all = []
   

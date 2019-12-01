@@ -14,9 +14,8 @@ attr_accessor :input
     
     while self.input != 'exit'
       your_artist = pick_an_artist
-      pause unless input == 'exit'
       
-      details_loop = true if input != 'exit' 
+      details_loop = true unless input == 'exit' 
       while details_loop == true 
         choice = level_one_details(your_artist) # 1=relatedartist, 2=topalbums, 3=top songs
         level_two_details(your_artist, choice)
@@ -44,6 +43,8 @@ attr_accessor :input
       fav_artist = Artist.new(input)
       print_artist_info(fav_artist)
     end
+    self.input = 'exit' if fav_artist.error == true 
+    pause 
     fav_artist
   end 
   
@@ -68,10 +69,11 @@ attr_accessor :input
   
     def exit_prompt(fav_artist)
     fav_artist.reset 
-    puts "That's it!"
     self.input = ""
-    puts "Would you like to continue?"
+    puts "--------------------------------"
+    puts "Would you like to pick a different artist?"
     puts "Press 'Enter' to pick a new artist or type 'exit' to quit"
+    puts "--------------------------------"
     self.input = gets.chomp 
   end 
   
