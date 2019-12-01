@@ -66,6 +66,25 @@ attr_accessor :input
     end 
   end 
   
+    def exit_prompt(fav_artist)
+    fav_artist.reset 
+    puts "That's it!"
+    self.input = ""
+    puts "Would you like to continue?"
+    puts "Press 'Enter' to pick a new artist or type 'exit' to quit"
+    self.input = gets.chomp 
+  end 
+  
+  def be_polite_say_goodbye
+    puts "Thank you for stopping by!"
+    puts "See you next time, friend."
+  end 
+  
+  def pause 
+    puts "Press enter to continue"
+    gets
+  end 
+  
   ## Get user input methods ## 
   
   # 1. Get favorite artist 
@@ -100,19 +119,26 @@ attr_accessor :input
     elsif input == 'exit'
       good_input = true 
     else 
-      puts "Invalid input, please try again."
+      puts "Invalid input, please enter 1-3 or 'exit'."
     end 
   end 
     input 
-  end # end of method  
+  end
   
   #3. Get input for which album user wants to see tracklist for 
   def get_user_input_album_tracklist
     puts ""
     puts "Would you like to see the tracklist?"
-    puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
+    puts "Enter 'y' for tracklist or 'n' to skip"
+    
     good_input = false 
+    self.input = gets.chomp 
+    if self.input == 'n'
+      good_input = true 
+    end 
+    
     while good_input == false 
+      puts "Enter 1-5 for album selection, Press Enter to continue, or type 'exit'"
       self.input = gets.chomp 
       case self.input 
       when "1"
@@ -131,8 +157,7 @@ attr_accessor :input
     end 
   end 
   
-  #4. Which related artist do you want to see the top 5 tracks for?
-  #returns artist instance of the related artist 
+  #4. Get input - which related artist do you want to see the top 5 tracks for?
   def get_user_input_related_artist(fav)
     puts "Would you like to see one of these artist's top songs?"
     puts "Enter 1-5 to select an artist or type 'exit'"
@@ -216,27 +241,5 @@ attr_accessor :input
     puts "Here are the top songs for #{artist.name}"
     artist.print_top_songs
   end 
-  
-  ### Misc. Helper Methods ### 
-  def exit_prompt(fav_artist)
-    fav_artist.reset 
-    puts "That's it!"
-    self.input = ""
-    puts "Would you like to continue?"
-    puts "Press 'Enter' to pick a new artist or type 'exit' to quit"
-    self.input = gets.chomp 
-  end 
-  
-  def be_polite_say_goodbye
-    puts "Thank you for stopping by!"
-    puts "See you next time, friend."
-  end 
-  
-  def pause 
-    puts "Press enter to continue"
-    gets
-  end 
-
-  
   
 end #end of class 
