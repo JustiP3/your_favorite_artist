@@ -129,7 +129,7 @@ attr_accessor :input
   def get_user_input_album_tracklist
     puts ""
     puts "Would you like to see the tracklist?"
-    puts "Enter 'y' for tracklist or 'n' to skip"
+    puts "Enter 'y' to select a tracklist or 'n' to skip"
     
     good_input = false 
     self.input = gets.chomp 
@@ -160,10 +160,17 @@ attr_accessor :input
   #4. Get input - which related artist do you want to see the top 5 tracks for?
   def get_user_input_related_artist(fav)
     puts "Would you like to see one of these artist's top songs?"
-    puts "Enter 1-5 to select an artist or type 'exit'"
+    puts "Enter 'y' to select a related artist or 'n' to skip"
+    
     good_input = false 
+    self.input = gets.chomp 
+    if self.input == 'n'
+      good_input = true 
+    end 
+    
     index = -1 
     while good_input == false 
+    puts "Enter 1-5 to select an artist or type 'exit'"
       self.input = gets.chomp 
       case input 
       when "1"
@@ -187,7 +194,11 @@ attr_accessor :input
         puts "Invalid input, Please enter 1-5, or 'exit'"
       end 
     end 
-    Artist.new(fav.related_artists[index]) unless input == 'exit'
+    if input != 'exit' && index != -1 
+      Artist.new(fav.related_artists[index]) 
+    else 
+      "Do not print"
+    end 
   end 
   
   ## Print to console methods ## 
@@ -232,14 +243,19 @@ attr_accessor :input
     when "5"
       index = 4
     end 
-    artist.print_tracklist(index) unless index == nil 
+    if index != nil 
+      puts "Here is the tracklist for the album"
+      artist.print_tracklist(index) 
+    end 
   end 
   
   #4. Print level 2 details - Top songs of related artist 
   def print_related_artist_top_songs(artist)
-    artist.get_info
-    puts "Here are the top songs for #{artist.name}"
-    artist.print_top_songs
+    if artist.class == Artist 
+      artist.get_info
+      puts "Here are the top songs for #{artist.name}"
+      artist.print_top_songs
+    end 
   end 
   
 end #end of class 
