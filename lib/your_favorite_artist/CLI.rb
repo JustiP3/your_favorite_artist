@@ -219,7 +219,6 @@ attr_accessor :input
   
   #1. Print artist name and bio 
   def print_artist_info(artist)
-    artist.get_info
       if artist.error == false 
         puts "--------------------------------"
         puts "You picked #{artist.name}!"
@@ -274,7 +273,6 @@ attr_accessor :input
   #4. Print level 2 details - Top songs of related artist 
   def print_related_artist_top_songs(artist)
     if artist.class == Artist 
-      artist.get_info
       puts "--------------------------------"
       puts "Here are the top songs for #{artist.name}"
       artist.print_top_songs

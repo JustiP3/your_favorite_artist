@@ -2,7 +2,7 @@ class API
 #key a9ca6c61110b8a16ee8dd7a8d661ed33
 
   def self.get_artist_info(artist_instance)
-    link = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{artist}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
+    link = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{artist_instance.name}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
     hash = HTTParty.get(link).parsed_response 
     
     #test for errors (e.g. artist not found)
