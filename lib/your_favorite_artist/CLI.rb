@@ -13,7 +13,7 @@ attr_accessor :input
     welcome 
     
     while self.input != 'exit'
-      your_artist = pick_an_artist
+      your_artist = pick_an_artist         #artist instantiation 
       
       details_loop = true unless input == 'exit' 
       while details_loop == true 
@@ -21,7 +21,7 @@ attr_accessor :input
         level_two_details(your_artist, details_type)
         details_loop = false if self.input == 'exit'
       end 
-      exit_prompt(your_artist)
+      exit_prompt
    end
    be_polite_say_goodbye 
   end 
@@ -71,7 +71,7 @@ attr_accessor :input
     end 
   end 
   
-    def exit_prompt(fav_artist)
+    def exit_prompt
     Album.clear 
     self.input = ""
     puts "--------------------------------"
