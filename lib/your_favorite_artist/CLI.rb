@@ -9,7 +9,6 @@ attr_accessor :input
  #-----------------------------------------------------------------------------
  
   def call 
-    
     welcome 
     
     while self.input != 'exit'
@@ -22,8 +21,8 @@ attr_accessor :input
         details_loop = false if self.input == 'exit'
       end 
       exit_prompt
-   end
-   be_polite_say_goodbye 
+    end
+    be_polite_say_goodbye 
   end 
   
   #-----------------------------------------------------------------------------
@@ -71,7 +70,7 @@ attr_accessor :input
     end 
   end 
   
-    def exit_prompt
+  def exit_prompt
     Album.clear 
     self.input = ""
     puts "--------------------------------"
@@ -99,9 +98,9 @@ attr_accessor :input
       puts "Who is your favorite artist?"
       puts "Enter your favorite artist or exit"
       self.input = gets.chomp 
-    end #end of until loop 
-    return input 
-  end #end of method get_user_input 
+    end 
+    input 
+  end 
   
   #2. Get input for which details user wants to see 
   def get_user_input_details
@@ -183,8 +182,9 @@ attr_accessor :input
     
     index = -1 
     while good_input == false 
-    puts "Enter 1-#{number_of_related_artists} to select an artist or type 'exit'"
+      puts "Enter 1-#{number_of_related_artists} to select an artist or type 'exit'"
       self.input = gets.chomp 
+      
       case input 
       when "1"
         good_input = true 
@@ -219,15 +219,15 @@ attr_accessor :input
   
   #1. Print artist name and bio 
   def print_artist_info(artist)
-      if artist.error == false 
-        puts "--------------------------------"
-        puts "You picked #{artist.name}!"
-        puts "--------------------------------"
-        puts "Artist Bio:"
-        puts artist.short_bio
-      else 
-        puts artist.error_message 
-      end 
+    if artist.error == false 
+      puts "--------------------------------"
+      puts "You picked #{artist.name}!"
+      puts "--------------------------------"
+      puts "Artist Bio:"
+      puts artist.short_bio
+    else 
+      puts artist.error_message 
+    end 
   end 
   
   #2. Print level 1 details

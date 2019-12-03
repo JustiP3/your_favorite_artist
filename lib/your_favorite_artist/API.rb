@@ -54,7 +54,7 @@ class API
     hash = HTTParty.get(link).parsed_response
 
     hash["toptracks"]["track"].each {|song| artist.top_songs.push(song["name"])}
-   artist.top_songs = artist.top_songs.slice(0..4)
+    artist.top_songs = artist.top_songs.slice(0..4)
   end 
 
 end 
