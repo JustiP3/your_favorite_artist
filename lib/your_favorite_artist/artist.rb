@@ -14,7 +14,7 @@ class Artist
     API.get_artist_info(self)
   end 
   
-  def print_top_albums
+  def print_top_albums  
     API.get_top_albums(self)
     Album.sort
     Album.all.each do |album|
@@ -34,7 +34,7 @@ class Artist
   end 
   
   def print_top_songs 
-    self.top_songs = API.get_top_tracks(self)
+    API.get_top_tracks(self)
     top_songs.each.with_index(1) {|song, i| puts "#{i}. #{song}"}
   end 
   

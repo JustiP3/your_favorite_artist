@@ -48,10 +48,9 @@ class API
   def self.get_top_tracks(artist)
     link = "http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=#{artist.name}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
     hash = HTTParty.get(link).parsed_response
-    top_tracks = []
-    
-    hash["toptracks"]["track"].each {|song| top_tracks.push(song["name"])}
-    top_tracks.slice(0..4)
+
+    hash["toptracks"]["track"].each {|song| artist.top_songs.push(song["name"])}
+   artist.top_songs = artist.top_songs.slice(0..4)
   end 
 
 end 
