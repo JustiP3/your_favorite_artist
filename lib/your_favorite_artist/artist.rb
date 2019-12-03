@@ -7,30 +7,14 @@ class Artist
     @error_message = ""
     @related_artists = []
     @top_songs = []
+    get_info 
   end 
   
   def get_info
-    temp_hash = API.get_artist_info(self.name)
-    if temp_hash["error"]
-      self.error_message = temp_hash["message"]
-      self.error = true 
-    else 
-      self.name = temp_hash[:name]
-      self.bio = temp_hash[:bio]
-      self.short_bio = self.bio.slice(0,75)
-      self.short_bio << "..."
-      self.related_artists = temp_hash[:similar]
-    end 
-
+    API.get_artist_info(self)
   end 
   
-  def create_album(album_hash, rank)
-    name = album_hash["name"]
-    play_count = album_hash["playcount"]
-    Album.new(name, rank, play_count) 
-  end 
-  
-    def print_top_albums
+  def print_top_albums
     API.get_top_albums(self)
     Album.sort
     Album.all.each do |album|

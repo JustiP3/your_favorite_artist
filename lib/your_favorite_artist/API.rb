@@ -1,26 +1,27 @@
 class API  
 #key a9ca6c61110b8a16ee8dd7a8d661ed33
 
-  def self.get_artist_info(artist)
+  def self.get_artist_info(artist_instance)
     link = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{artist}&api_key=a9ca6c61110b8a16ee8dd7a8d661ed33&format=json"
     hash = HTTParty.get(link).parsed_response 
-    if hash["error"] == 6 
-      artist_info = hash 
-    else 
-      related_artists = []
-      hash["artist"]["similar"]["artist"].each {|artist_hash| related_artists.push(artist_hash["name"])}
-      artist_info = {
-        :name => hash["artist"]["name"],
-        :similar => related_artists
-      }
     
-      if hash["artist"]["bio"]["summary"].include?("https://www.last.fm/music/+noredirect")
-        artist_info[:bio] = "Sorry, this artist does not have a bio."
-      else 
-        artist_info[:bio] = hash["artist"]["bio"]["summary"]
-      end 
+    #test for errors (e.g. artist not found)
+    if hash["error"] == 6 
+      artist_instance.error_message = hash["message"]
+      artist_instance.error = true
+    else 
+      hash["artist"]["similar"]["artist"].each {|artist_hash| artist_instance.related_artists.push(artist_hash["name"])}
+      artist_instance.name = hash["artist"]["name"]
     end 
-    artist_info
+      
+    #test that bio section exists 
+    if hash["artist"]["bio"]["summary"].include?("https://www.last.fm/music/+noredirect")
+     artist_instance.bio = "Sorry, this artist does not have a bio."
+    else 
+      artist_instance.bio = hash["artist"]["bio"]["summary"]
+    end
+    artist_instance.short_bio = artist_instance.bio.slice(0,75)
+    artist_instance.short_bio << "..."
   end 
   
   def self.get_top_albums(artist)
@@ -33,7 +34,7 @@ class API
       short_list = hash["topalbums"]["album"][0..4]
     end 
     
-    short_list.each.with_index(1) {|album, i| artist.create_album(album, i)}
+    short_list.each.with_index(1) {|album, i| Album.create_album(album, i)}
   end 
   
   def self.get_album_info(artist, album)
