@@ -8,19 +8,7 @@ For "Top albums" you can select an album and see the tracklist.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'your_favorite_artist'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install your_favorite_artist
+This gem will not be made public. 
 
 ## Usage
 
@@ -29,6 +17,11 @@ Or install it yourself as:
 3. Type 'ruby bin/run'.
 4. Follow the on screen instructions. 
 NOTE: You may type 'exit' at any time to skip to the end of the program.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bxMmJKgPxxI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Below is a link to a short "how to" video where you can see the gem in action.
+https://youtu.be/bxMmJKgPxxI
 
 ## Development
 
