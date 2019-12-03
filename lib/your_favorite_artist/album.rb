@@ -36,10 +36,4 @@ class Album
     @@all.size 
   end 
   
-  def self.create_album(album_hash, rank)
-    name = album_hash["name"]
-    play_count = album_hash["playcount"]
-    Album.new(name, rank, play_count) 
-  end 
-  
 end 

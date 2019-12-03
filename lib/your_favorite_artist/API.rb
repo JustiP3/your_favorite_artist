@@ -34,7 +34,11 @@ class API
       short_list = hash["topalbums"]["album"][0..4]
     end 
     
-    short_list.each.with_index(1) {|album, i| Album.create_album(album, i)}
+    short_list.each.with_index(1) do |album_hash, i| 
+      name = album_hash["name"]
+      play_count = album_hash["playcount"]
+      Album.new(name, i, play_count) 
+    end 
   end 
   
   def self.get_album_info(artist, album)
