@@ -12,16 +12,17 @@ class API
     else 
       hash["artist"]["similar"]["artist"].each {|artist_hash| artist_instance.related_artists.push(artist_hash["name"])}
       artist_instance.name = hash["artist"]["name"]
+      if hash["artist"]["bio"]["summary"].include?("https://www.last.fm/music/+noredirect") 
+        artist_instance.bio = "Sorry, this artist does not have a bio."
+      else 
+        artist_instance.bio = hash["artist"]["bio"]["summary"]
+      end
+      artist_instance.short_bio = artist_instance.bio.slice(0,75)
+      artist_instance.short_bio << "..."
     end 
       
     #test that bio section exists 
-    if hash["artist"]["bio"]["summary"].include?("https://www.last.fm/music/+noredirect")
-     artist_instance.bio = "Sorry, this artist does not have a bio."
-    else 
-      artist_instance.bio = hash["artist"]["bio"]["summary"]
-    end
-    artist_instance.short_bio = artist_instance.bio.slice(0,75)
-    artist_instance.short_bio << "..."
+
   end 
   
   def self.get_top_albums(artist)

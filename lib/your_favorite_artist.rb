@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'json'
 require 'httparty'
+require 'pry'
 
 require_relative 'your_favorite_artist/version'
 require_relative 'your_favorite_artist/CLI'
